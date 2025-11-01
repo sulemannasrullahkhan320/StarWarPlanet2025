@@ -8,22 +8,17 @@ import androidx.compose.material3.Surface
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
-import com.example.starwarplanetsapp.Di.appModule
 import com.example.starwarplanetsapp.constant.AppConstants.ARG_CLIMATE
 import com.example.starwarplanetsapp.constant.AppConstants.ARG_GRAVITY
 import com.example.starwarplanetsapp.constant.AppConstants.ARG_NAME
 import com.example.starwarplanetsapp.constant.AppConstants.ARG_ORBITAL
 import com.example.starwarplanetsapp.constant.AppConstants.ROUTE_DETAILS
 import com.example.starwarplanetsapp.constant.AppConstants.ROUTE_PLANETS
-import com.example.starwarplanetsapp.constant.networkModule
 import com.example.starwarplanetsapp.dataclass.Planets
 import com.example.starwarplanetsapp.ui.theme.PlanetDetailsScreen
 import com.example.starwarplanetsapp.ui.theme.PlanetsListScreen
 import com.example.starwarplanetsapp.viewmodel.PlanetsViewModel
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.compose.getViewModel
-import org.koin.core.context.startKoin
-import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
@@ -31,13 +26,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // ✅ Initialize Koin (Dependency Injection)
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(networkModule, appModule)
-        }
 
-        // ✅ Compose UI content
+        //  Compose UI content
         setContent {
             Surface(color = MaterialTheme.colorScheme.background) {
                 val navController = rememberNavController()
